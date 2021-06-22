@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Forum Intro</title>
+</head>
+
+<body>
+    <p id='userpara'></p>
+
+    <script>
+        let isNum = false;
+        while (!isNum) {
+            let input = prompt('Type the message you would like to send');
+            isNum = true;
+
+            for (i = 0; i < input.length; i++) {
+                // if (!(/[a-zA-Z]/).test(input.charAt(i))) {
+                //     isWord = false;
+                // }
+
+                if (isNaN(input)) {
+                    isNum = false;
+                }
+            }
+
+            if (!isNum) {
+                alert('Please type using only numbers');
+            }
+            else if (confirm(`Send ${input}?`)) {
+                document.getElementById('userpara').innerHTML = input;
+            }
+        }
+    </script>
+</body>
+
+</html>

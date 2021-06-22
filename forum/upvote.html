@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upvote Button</title>
+</head>
+
+<body>
+    <span id='votes' class='votes'></span> pts
+    <button id='btn_upvote' class='up' onclick='increment()'>Upvote</button>
+    <button id='btn_downvote' class='down' onclick='decrement()'>Downvote</button>
+
+    <script>
+        let counter = 0;
+        document.getElementById('votes').innerHTML = counter;
+
+        function increment() {
+            counter++;
+            document.getElementById('votes').innerHTML = counter;
+        }
+
+        function decrement() {
+            counter--;
+            document.getElementById('votes').innerHTML = counter;
+        }
+    </script>
+
+    <style>
+        .votes {
+            border: 1px solid black;
+            border-radius: 3px;
+            padding-left: 0.25em;
+            padding-right: 0.25em;
+            box-shadow: 1px 1px 1px black;
+        }
+
+        button {
+            border: 1px solid black;
+            border-radius: 3px;
+            padding: 0.25em;
+            color: white;
+            box-shadow: 1px 1px 1px black;
+            cursor: pointer;
+            font-family: monospace;
+        }
+
+        button:active {
+            box-shadow: none;
+        }
+
+        button.up {
+            background-color: red;
+        }
+
+        button.down {
+            background-color: blue;
+        }
+    </style>
+</body>
+
+</html>
