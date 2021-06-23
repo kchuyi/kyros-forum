@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upvote Button</title>
+</head>
+
+<body>
+    <button id='btn_upvote' class='up' onclick='increment()'>
+        <p>upvote</p>
+    </button>
+    <span class='votes-container'><span id='votes' class='votes'></span> pts</span>
+    <button id='btn_downvote' class='down' onclick='decrement()'>
+        <p>downvote</p>
+    </button>
+
+    <script>
+        let counter = 0;
+        document.getElementById('votes').innerHTML = counter;
+
+        function increment() {
+            counter++;
+            document.getElementById('votes').innerHTML = counter;
+        }
+
+        function decrement() {
+            counter--;
+            document.getElementById('votes').innerHTML = counter;
+        }
+    </script>
+
+    <style>
+        .votes {
+            border: 1px solid black;
+            border-radius: 3px;
+            padding-left: 0.25em;
+            padding-right: 0.25em;
+            box-shadow: 1px 1px 1px black;
+            font-family: monospace;
+        }
+
+        .votes-container {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+        }
+
+        button p {
+            margin: auto;
+            position: relative;
+            left: -20px;
+            font-family: monospace;
+        }
+
+        button.up p {
+            top: 5px;
+        }
+
+        button.down p {
+            top: -20px;
+        }
+
+        button.up {
+            border-bottom: 30px solid red;
+        }
+
+        button.down {
+            border-top: 30px solid blue;
+        }
+    </style>
+</body>
+
+</html>
