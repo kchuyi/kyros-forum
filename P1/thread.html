@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Thread</title>
+</head>
+
+<body>
+    <h1 id='title' style='display: inline;'>
+        <a href="#content" id='title_link'>Hello world</a>
+    </h1>
+    <div id='content'>
+        <span id='text'>Lorem ipsum dolor sit amet, consectet...</span>
+        <button id='edit' onclick='startEdit()'>edit</button>
+
+        <div id='editing' style='display: none'>
+            <input type='text' id='in_title' placeholder='title'>
+            <br>
+            <textarea id='box' rows='10' cols='115'></textarea>
+
+            <button id='submit' onclick='stopEdit()'>submit</button>
+        </div>
+    </div>
+
+    <script>
+        function startEdit() {
+            document.getElementById('editing').style.display = 'block';
+            document.getElementById('title').style.display = 'none';
+            document.getElementById('text').style.display = 'none';
+            document.getElementById('edit').style.display = 'none';
+
+            document.getElementById('in_title').value = document.getElementById('title').innerText.trim();
+            document.getElementById('box').value = document.getElementById('text').innerText;
+        }
+
+        function stopEdit() {
+            document.getElementById('editing').style.display = 'none';
+            document.getElementById('title').style.display = 'inline';
+            document.getElementById('text').style.display = 'block';
+            document.getElementById('edit').style.display = 'block';
+
+            document.getElementById('title').innerText = document.getElementById('in_title').value;
+            document.getElementById('text').innerText = document.getElementById('box').value;
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: system-ui;
+        }
+
+        #content {
+            display: none;
+        }
+
+        #content:target {
+            display: block;
+        }
+
+        input,
+        button,
+        textarea {
+            font-family: system-ui;
+        }
+
+        input,
+        button {
+            border: 1px solid black;
+            border-radius: 2px;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        #text {
+            display: block;
+        }
+
+        button {
+            display: block;
+            margin-top: 1em;
+        }
+    </style>
+</body>
+
+</html>
