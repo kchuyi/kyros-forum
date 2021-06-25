@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Post</title>
+</head>
+
+<body>
+    <h1 id='title'>
+        <a href="#content" id='title_link'>Hello world</a>
+    </h1>
+    <div id='content'>
+        <div class='sidebar'>
+            <div id='votes-container' class='votes'>
+                <button id='btn_upvote' class='arrow up' onclick='increment()'></button>
+                <span class='vote-count-container'><span id='votes' class='vote-count'></span> pts</span>
+                <button id='btn_downvote' class='arrow down' onclick='decrement()'></button>
+            </div>
+            <button id='edit' onclick='startEdit()'>edit</button>
+        </div>
+
+        <span id='text' class='post-text'>Bacon ipsum dolor amet porchetta alcatra tri-tip swine burgdoggen t-bone
+            shankle ball tip frankfurter andouille drumstick tenderloin short loin tail landjaeger. Turducken ball tip
+            boudin shank ham hock chicken tail kielbasa pork loin sirloin rump swine leberkas alcatra. Kevin fatback
+            prosciutto, beef ribs biltong jowl pork chop turkey meatloaf venison rump tri-tip cow landjaeger bresaola.
+            Jowl swine pig strip steak shankle boudin turducken sausage ball tip short loin hamburger landjaeger filet
+            mignon tail.
+
+            Rump landjaeger tri-tip corned beef pork belly boudin pastrami meatloaf. Sausage pancetta tri-tip jowl,
+            shank swine ground round jerky. Bacon hamburger leberkas beef pork chop chislic cupim filet mignon chuck
+            alcatra short ribs turducken frankfurter chicken buffalo. Swine shoulder ham hock porchetta. Alcatra sirloin
+            cow swine chuck. Kielbasa tenderloin jowl, burgdoggen short ribs strip steak tongue pork chop. Hamburger
+            jowl capicola landjaeger ball tip tongue strip steak pig, kevin kielbasa.
+
+            Pastrami doner filet mignon ham, salami biltong tail jowl corned beef ham hock chicken short ribs. Buffalo
+            tongue ribeye beef ribs meatball chislic jerky frankfurter. T-bone turkey meatball, pancetta porchetta
+            buffalo capicola ribeye jowl chicken ground round alcatra salami tail. Venison kielbasa meatloaf, cow boudin
+            pork belly hamburger short ribs bacon turducken fatback tenderloin spare ribs salami. Pig beef ribs tongue
+            chuck pork chop jowl picanha andouille corned beef. Rump boudin pork loin drumstick cupim. Flank t-bone
+            sirloin cow burgdoggen pork ribeye meatloaf chislic.
+
+            Brisket tongue pastrami fatback prosciutto pork. Drumstick hamburger ball tip, flank meatball doner pork
+            loin frankfurter cow buffalo tenderloin. Kevin swine cupim doner cow pork. Sausage sirloin jerky prosciutto
+            ham alcatra ribeye meatloaf corned beef tongue.
+
+            Kielbasa beef ribs tail doner filet mignon. Shank sirloin andouille, biltong pig chicken beef pork
+            landjaeger short loin pork chop bacon corned beef. Turkey ground round pig, chislic ham hock landjaeger
+            capicola tail ribeye flank. Jowl chicken corned beef pig, boudin rump tail pork chop buffalo pork belly
+            cupim shoulder pork swine.</span>
+
+        <div id='editing' style='display: none'>
+            <input type='text' id='in_title' placeholder='title'>
+            <br>
+            <textarea id='box' rows='10' cols='115'></textarea>
+
+            <button id='submit' class="submit" onclick='stopEdit()'>submit</button>
+        </div>
+    </div>
+
+    <script>
+        function startEdit() {
+            document.getElementById('editing').hidden = false;
+            document.getElementById('title').hidden = true;
+            document.getElementById('text').hidden = true;
+            document.getElementById('edit').hidden = true;
+            document.getElementById('votes-container').style.display = 'none';
+
+            document.getElementById('in_title').value = document.getElementById('title').innerText.trim();
+            document.getElementById('box').value = document.getElementById('text').innerText;
+        }
+
+        function stopEdit() {
+            document.getElementById('editing').style.display = 'none';
+            document.getElementById('title').style.display = 'block';
+            document.getElementById('text').style.display = 'inline-block';
+            document.getElementById('edit').style.display = 'block';
+            document.getElementById('votes-container').style.display = 'block';
+
+            document.getElementById('title').innerText = document.getElementById('in_title').value;
+            document.getElementById('text').innerText = document.getElementById('box').value;
+        }
+
+        let counter = 0;
+        document.getElementById('votes').innerHTML = counter;
+
+        function increment() {
+            counter++;
+            document.getElementById('votes').innerHTML = counter;
+        }
+
+        function decrement() {
+            counter--;
+            document.getElementById('votes').innerHTML = counter;
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: system-ui;
+        }
+
+        h1 {
+            display: block;
+        }
+
+        .sidebar {}
+
+        button {
+            display: block;
+        }
+
+        #content {
+            display: none;
+            width: 95%;
+        }
+
+        #content:target {
+            display: block;
+        }
+
+        input,
+        button,
+        textarea {
+            font-family: system-ui;
+        }
+
+        input,
+        button {
+            border: 1px solid black;
+            border-radius: 2px;
+            margin-top: 1em;
+            margin-bottom: 1em;
+        }
+
+        .votes {
+            display: inline-block;
+        }
+
+        .post-text {
+            /* display: inline-block; */
+            float: left;
+        }
+
+        .vote-count {
+            border: 1px solid black;
+            border-radius: 3px;
+            padding-left: 0.25em;
+            padding-right: 0.25em;
+            box-shadow: 1px 1px 1px black;
+            font-family: monospace;
+        }
+
+        .vote-count-container {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        button.arrow {
+            border: none;
+            background: none;
+            cursor: pointer;
+            padding: 0;
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            margin-top: 1em;
+        }
+
+        button.arrow p {
+            margin: auto;
+            position: relative;
+            left: -20px;
+            font-family: monospace;
+        }
+
+        button.up p {
+            top: 5px;
+        }
+
+        button.down p {
+            top: -20px;
+        }
+
+        button.up {
+            border-bottom: 30px solid red;
+        }
+
+        button.down {
+            border-top: 30px solid blue;
+        }
+    </style>
+</body>
+
+</html>
