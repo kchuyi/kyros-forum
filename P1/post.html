@@ -16,68 +16,57 @@
                 <span class='vote-count-container'><span id='votes' class='vote-count'></span> pts</span>
                 <button id='btn_downvote' class='arrow down' onclick='decrement()'></button>
             </div>
-            <button id='edit' onclick='startEdit()'>edit</button>
+            <button id='edit' onclick='toggleEdit()'>edit</button>
         </div>
 
-        <span id='text' class='post-text'>Bacon ipsum dolor amet porchetta alcatra tri-tip swine burgdoggen t-bone
-            shankle ball tip frankfurter andouille drumstick tenderloin short loin tail landjaeger. Turducken ball tip
-            boudin shank ham hock chicken tail kielbasa pork loin sirloin rump swine leberkas alcatra. Kevin fatback
-            prosciutto, beef ribs biltong jowl pork chop turkey meatloaf venison rump tri-tip cow landjaeger bresaola.
-            Jowl swine pig strip steak shankle boudin turducken sausage ball tip short loin hamburger landjaeger filet
-            mignon tail.
+        <div class='text-container'>
+            <span id='text' class='post-text'>Bacon ipsum dolor amet porchetta alcatra tri-tip swine burgdoggen t-bone
+                shankle ball tip frankfurter andouille drumstick tenderloin short loin tail landjaeger. Turducken ball
+                tip
+                boudin shank ham hock chicken tail kielbasa pork loin sirloin rump swine leberkas alcatra. Kevin fatback
+                prosciutto, beef ribs biltong jowl pork chop turkey meatloaf venison rump tri-tip cow landjaeger
+                bresaola.
+                Jowl swine pig strip steak shankle boudin turducken sausage ball tip short loin hamburger landjaeger
+                filet
+                mignon tail.
 
-            Rump landjaeger tri-tip corned beef pork belly boudin pastrami meatloaf. Sausage pancetta tri-tip jowl,
-            shank swine ground round jerky. Bacon hamburger leberkas beef pork chop chislic cupim filet mignon chuck
-            alcatra short ribs turducken frankfurter chicken buffalo. Swine shoulder ham hock porchetta. Alcatra sirloin
-            cow swine chuck. Kielbasa tenderloin jowl, burgdoggen short ribs strip steak tongue pork chop. Hamburger
-            jowl capicola landjaeger ball tip tongue strip steak pig, kevin kielbasa.
+                Rump landjaeger tri-tip corned beef pork belly boudin pastrami meatloaf. Sausage pancetta tri-tip jowl,
+                shank swine ground round jerky. Bacon hamburger leberkas beef pork chop chislic cupim filet mignon chuck
+                alcatra short ribs turducken frankfurter chicken buffalo. Swine shoulder ham hock porchetta. Alcatra
+                sirloin
+                cow swine chuck. Kielbasa tenderloin jowl, burgdoggen short ribs strip steak tongue pork chop. Hamburger
+                jowl capicola landjaeger ball tip tongue strip steak pig, kevin kielbasa.
 
-            Pastrami doner filet mignon ham, salami biltong tail jowl corned beef ham hock chicken short ribs. Buffalo
-            tongue ribeye beef ribs meatball chislic jerky frankfurter. T-bone turkey meatball, pancetta porchetta
-            buffalo capicola ribeye jowl chicken ground round alcatra salami tail. Venison kielbasa meatloaf, cow boudin
-            pork belly hamburger short ribs bacon turducken fatback tenderloin spare ribs salami. Pig beef ribs tongue
-            chuck pork chop jowl picanha andouille corned beef. Rump boudin pork loin drumstick cupim. Flank t-bone
-            sirloin cow burgdoggen pork ribeye meatloaf chislic.
+                Pastrami doner filet mignon ham, salami biltong tail jowl corned beef ham hock chicken short ribs.
+                Buffalo
+                tongue ribeye beef ribs meatball chislic jerky frankfurter. T-bone turkey meatball, pancetta porchetta
+                buffalo capicola ribeye jowl chicken ground round alcatra salami tail. Venison kielbasa meatloaf, cow
+                boudin
+                pork belly hamburger short ribs bacon turducken fatback tenderloin spare ribs salami. Pig beef ribs
+                tongue
+                chuck pork chop jowl picanha andouille corned beef. Rump boudin pork loin drumstick cupim. Flank t-bone
+                sirloin cow burgdoggen pork ribeye meatloaf chislic.
 
-            Brisket tongue pastrami fatback prosciutto pork. Drumstick hamburger ball tip, flank meatball doner pork
-            loin frankfurter cow buffalo tenderloin. Kevin swine cupim doner cow pork. Sausage sirloin jerky prosciutto
-            ham alcatra ribeye meatloaf corned beef tongue.
+                Brisket tongue pastrami fatback prosciutto pork. Drumstick hamburger ball tip, flank meatball doner pork
+                loin frankfurter cow buffalo tenderloin. Kevin swine cupim doner cow pork. Sausage sirloin jerky
+                prosciutto
+                ham alcatra ribeye meatloaf corned beef tongue.
 
-            Kielbasa beef ribs tail doner filet mignon. Shank sirloin andouille, biltong pig chicken beef pork
-            landjaeger short loin pork chop bacon corned beef. Turkey ground round pig, chislic ham hock landjaeger
-            capicola tail ribeye flank. Jowl chicken corned beef pig, boudin rump tail pork chop buffalo pork belly
-            cupim shoulder pork swine.</span>
-
-        <div id='editing' style='display: none'>
-            <input type='text' id='in_title' placeholder='title'>
-            <br>
-            <textarea id='box' rows='10' cols='115'></textarea>
-
-            <button id='submit' class="submit" onclick='stopEdit()'>submit</button>
+                Kielbasa beef ribs tail doner filet mignon. Shank sirloin andouille, biltong pig chicken beef pork
+                landjaeger short loin pork chop bacon corned beef. Turkey ground round pig, chislic ham hock landjaeger
+                capicola tail ribeye flank. Jowl chicken corned beef pig, boudin rump tail pork chop buffalo pork belly
+                cupim shoulder pork swine.</span>
         </div>
     </div>
 
     <script>
-        function startEdit() {
-            document.getElementById('editing').hidden = false;
-            document.getElementById('title').hidden = true;
-            document.getElementById('text').hidden = true;
-            document.getElementById('edit').hidden = true;
-            document.getElementById('votes-container').style.display = 'none';
+        function toggleEdit() {
+            let editing = document.getElementById('edit').innerText === "edit";
 
-            document.getElementById('in_title').value = document.getElementById('title').innerText.trim();
-            document.getElementById('box').value = document.getElementById('text').innerText;
-        }
+            document.getElementById('title').contentEditable = editing;
+            document.getElementById('text').contentEditable = editing;
 
-        function stopEdit() {
-            document.getElementById('editing').style.display = 'none';
-            document.getElementById('title').style.display = 'block';
-            document.getElementById('text').style.display = 'inline-block';
-            document.getElementById('edit').style.display = 'block';
-            document.getElementById('votes-container').style.display = 'block';
-
-            document.getElementById('title').innerText = document.getElementById('in_title').value;
-            document.getElementById('text').innerText = document.getElementById('box').value;
+            document.getElementById('edit').innerText = editing ? "submit" : "edit";
         }
 
         let counter = 0;
@@ -103,7 +92,9 @@
             display: block;
         }
 
-        .sidebar {}
+        [contenteditable="true"] {
+            border: 1px solid black;
+        }
 
         button {
             display: block;
@@ -137,8 +128,7 @@
         }
 
         .post-text {
-            /* display: inline-block; */
-            float: left;
+            display: block;
         }
 
         .vote-count {

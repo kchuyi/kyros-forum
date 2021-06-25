@@ -24,20 +24,20 @@
 
     <script>
         function startEdit() {
-            document.getElementById('editing').style.display = 'block';
-            document.getElementById('title').style.display = 'none';
-            document.getElementById('text').style.display = 'none';
-            document.getElementById('edit').style.display = 'none';
+            document.getElementById('editing').hidden = false;
+            document.getElementById('title').hidden = true;
+            document.getElementById('text').hidden = true;
+            document.getElementById('edit').hidden = true;
 
             document.getElementById('in_title').value = document.getElementById('title').innerText.trim();
             document.getElementById('box').value = document.getElementById('text').innerText;
         }
 
         function stopEdit() {
-            document.getElementById('editing').style.display = 'none';
+            document.getElementById('editing').hidden = true;
             document.getElementById('title').style.display = 'inline';
-            document.getElementById('text').style.display = 'block';
-            document.getElementById('edit').style.display = 'block';
+            document.getElementById('text').hidden = false;
+            document.getElementById('edit').hidden = false;
 
             document.getElementById('title').innerText = document.getElementById('in_title').value;
             document.getElementById('text').innerText = document.getElementById('box').value;

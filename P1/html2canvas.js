@@ -2226,7 +2226,7 @@
             if (range.getBoundingClientRect) {
                 var testElement = document.createElement('boundtest');
                 testElement.style.height = TEST_HEIGHT + "px";
-                testElement.style.display = 'block';
+                testElement.hidden = false;
                 document.body.appendChild(testElement);
                 range.selectNode(testElement);
                 var rangeBounds = range.getBoundingClientRect();
